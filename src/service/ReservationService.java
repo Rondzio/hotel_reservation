@@ -24,7 +24,7 @@ public class ReservationService {
     }
 
     public void addRoom (IRoom room) {
-        this.rooms.put((String)room.getRoomNumber(),room);
+        this.rooms.put(room.getRoomNumber(),room);
     }
 
     public IRoom getARoom(String roomId) {
@@ -41,6 +41,10 @@ public class ReservationService {
         //TODO
 
         return null;
+    }
+
+    public Map<String, IRoom> getRooms() {
+        return rooms;
     }
 
     public Collection<Reservation> getCustomersReservation(Customer customer) {
