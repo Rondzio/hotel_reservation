@@ -8,8 +8,11 @@ public class Menu {
     }
 
     public void displayMenu() {
+        System.out.println("--------------------------------------------------------");
         for (String item: menuItems) {
             System.out.println(item);
         }
-    };
+        System.out.println("--------------------------------------------------------");
+        System.out.println("Please select a number for the menu option");
+    }
 }
