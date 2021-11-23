@@ -3,14 +3,20 @@ package api;
 import model.Customer;
 import model.IRoom;
 import model.Reservation;
+import service.CustomerService;
+import service.ReservationService;
 
 import java.util.Collection;
 import java.util.Date;
 
 public class HotelResource {
     private static HotelResource hotelResource;
+    private ReservationService reservationService;
+    private CustomerService customerService;
 
     private HotelResource() {
+        reservationService = ReservationService.getInstance();
+        customerService = CustomerService.getInstance();
     }
 
     public static HotelResource getInstance() {
@@ -21,34 +27,28 @@ public class HotelResource {
     }
 
     public Customer getCustomer(String email) {
-        //TODO
-        return null;
+        return customerService.getCustomer(email);
     }
 
     public void createACustomer(String email, String firstName, String lastName){
-        //TODO
+        customerService.addCustomer(email, firstName, lastName);
     }
 
     public IRoom getRoom (String roomNumber) {
-        //TODO
 
-        return null;
+        return reservationService.getARoom(roomNumber);
     }
 
     public Reservation bookARoom (String customerEmail, IRoom room, Date checkInDate, Date checkOutDate) {
-        //TODO
-
-        return null;
+        return reservationService.reserveARoom(customerService.getCustomer(customerEmail), room, checkInDate, checkOutDate);
     }
 
     public Collection<Reservation> getCustomersReservations(String customerEmail) {
-        //TODO
 
-        return null;
+        return reservationService.getCustomersReservation(customerService.getCustomer(customerEmail));
     }
 
     public Collection<IRoom> findARoom(Date checkIn, Date checkOut) {
-        //TODO
-        return null;
+        return reservationService.findRooms(checkIn, checkOut);
     }
 }
